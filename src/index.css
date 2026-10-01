@@ -1,0 +1,974 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Dark is the default theme, and it is deliberately near-black: a 7%
+       background with 11% cards, rather than the mid-slate it used to be.
+       Everything else — borders, hard shadows, muted text — is tuned against
+       that floor, so re-run `npm run check:contrast` after moving it. */
+    --background: 215 30% 7%;
+    --foreground: 210 20% 96%;
+
+    --card: 214 28% 11%;
+    --card-foreground: 210 20% 96%;
+
+    --popover: 215 30% 7%;
+    --popover-foreground: 210 20% 96%;
+
+    --primary: 338 85% 70%;
+    --primary-foreground: 215 30% 7%;
+
+    --secondary: 262 60% 74%;
+    --secondary-foreground: 215 30% 7%;
+
+    --muted: 214 18% 24%;
+    /* Legible on the near-black page surface; 68% keeps a wide margin. */
+    --muted-foreground: 210 15% 68%;
+
+    --accent: 338 85% 70%;
+    --accent-foreground: 215 30% 7%;
+
+    --destructive: 0 84% 70%;
+    --destructive-foreground: 0 0% 96%;
+
+    --border: 214 22% 28%;
+    --input: 210 20% 50%;
+    --ring: 338 85% 70%;
+
+    --radius: 0rem;
+    
+
+    --portfolio-glow: 338 85% 70%;
+    --portfolio-section: 215 30% 7%;
+    --portfolio-nav: 215 30% 7%;
+
+
+    --gradient-hero: linear-gradient(135deg, hsl(215 30% 7%), hsl(214 28% 12%));
+    --gradient-card: linear-gradient(145deg, hsl(214 28% 11%), hsl(214 26% 14%));
+    --gradient-accent: linear-gradient(90deg, hsl(338 85% 70%), hsl(262 60% 74%));
+
+
+    --shadow-glow: 0 0 15px hsl(var(--portfolio-glow) / 0.3);
+    --shadow-card: 0 6px 20px -6px hsl(215 30% 2% / 0.6);
+    --shadow-soft: 0 4px 15px -4px hsl(215 30% 2% / 0.5);
+    /* Lighter than the surface it lands on, mirroring the light theme's
+       hsl(210 15% 80%) offset. The old near-black shadow was invisible once the
+       page went near-black, which flattened every brutalist card edge. */
+    --shadow-brutal: 4px 4px 0px hsl(214 22% 28%);
+    
+
+    --transition-smooth: all 0.2s ease-in-out;
+    --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+    --sidebar-background: 215 30% 7%;
+
+    --sidebar-foreground: 210 20% 96%;
+
+    --sidebar-primary: 338 85% 70%;
+
+    --sidebar-primary-foreground: 215 30% 7%;
+
+    --sidebar-accent: 214 28% 11%;
+
+    --sidebar-accent-foreground: 210 20% 96%;
+
+    --sidebar-border: 214 22% 28%;
+
+    --sidebar-ring: 338 85% 70%;
+  }
+
+  .dark {
+    /* Mirrors :root on purpose. The class variant exists for the toggle, not as a
+       second palette; letting it drift silently un-themes the whole site. */
+    --background: 215 30% 7%;
+    --foreground: 210 20% 96%;
+
+    --card: 214 28% 11%;
+    --card-foreground: 210 20% 96%;
+
+    --popover: 215 30% 7%;
+    --popover-foreground: 210 20% 96%;
+
+    --primary: 338 85% 70%;
+    --primary-foreground: 215 30% 7%;
+
+    --secondary: 262 60% 74%;
+    --secondary-foreground: 215 30% 7%;
+
+    --muted: 214 18% 24%;
+    /* Legible on the near-black page surface; 68% keeps a wide margin. */
+    --muted-foreground: 210 15% 68%;
+
+    --accent: 338 85% 70%;
+    --accent-foreground: 215 30% 7%;
+
+    --destructive: 0 84% 70%;
+    --destructive-foreground: 0 0% 96%;
+
+    --border: 214 22% 28%;
+    --input: 210 20% 50%;
+    --ring: 338 85% 70%;
+
+    --sidebar-background: 215 30% 7%;
+
+    --sidebar-foreground: 210 20% 96%;
+
+    --sidebar-primary: 338 85% 70%;
+
+    --sidebar-primary-foreground: 215 30% 7%;
+
+    --sidebar-accent: 214 28% 11%;
+
+    --sidebar-accent-foreground: 210 20% 96%;
+
+    --sidebar-border: 214 22% 28%;
+
+    --sidebar-ring: 338 85% 70%;
+  }
+
+ 
+  .light {
+    --background: 0 0% 97.25%; 
+    --foreground: 210 25% 20%; 
+
+    --card: 0 0% 100%; 
+    --card-foreground: 210 25% 20%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 210 25% 20%;
+
+    --primary: 338 75% 48%; 
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 262 50% 55%; 
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 0 0% 93%;
+    --muted-foreground: 210 25% 40%;
+
+    --accent: 338 65% 78%; 
+    --accent-foreground: 210 25% 20%;
+
+    --destructive: 0 72% 48%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 210 15% 85%;
+    --input: 210 12% 55%;
+    --ring: 338 75% 48%;
+
+    --portfolio-glow: 338 75% 48%;
+    --portfolio-section: 0 0% 97.25%;
+    --portfolio-nav: 0 0% 97.25%;
+
+  
+    --gradient-hero: linear-gradient(135deg, hsl(0 0% 97.25%), hsl(0 0% 99%));
+    --gradient-card: linear-gradient(145deg, hsl(0 0% 100%), hsl(0 0% 98%));
+    --gradient-accent: linear-gradient(90deg, hsl(338 75% 48%), hsl(262 50% 55%));
+
+
+    --shadow-glow: 0 0 20px hsl(338 75% 48% / 0.2);
+    --shadow-card: 0 4px 16px -4px hsl(210 25% 50% / 0.15);
+    --shadow-soft: 0 2px 12px -3px hsl(210 25% 50% / 0.12);
+    --shadow-brutal: 3px 3px 0px hsl(210 15% 80%);
+
+    --sidebar-background: 50 70% 96%;
+    --sidebar-foreground: 210 25% 20%;
+    --sidebar-primary: 338 75% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 50 60% 97%;
+    --sidebar-accent-foreground: 210 25% 20%;
+    --sidebar-border: 210 15% 85%;
+    --sidebar-ring: 338 75% 48%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    font-size: 100%; 
+    -webkit-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    touch-action: manipulation;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    background: hsl(var(--background));
+    min-height: 100vh;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    -webkit-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+  }
+  
+
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: hsl(var(--background));
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--primary));
+    border-radius: 0;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--secondary));
+  }
+}
+
+@layer components {
+  .stat-badge {
+    @apply inline-flex items-center font-semibold tracking-wide uppercase;
+    padding: 0.4rem 0.7rem;
+    background: hsl(var(--primary) / 0.12);
+    color: hsl(var(--foreground));
+    border: 2px solid hsl(var(--primary) / 0.35);
+    box-shadow: var(--shadow-brutal);
+  }
+  .dark .stat-badge {
+    background: hsl(var(--primary) / 0.18);
+    border-color: hsl(var(--primary) / 0.45);
+    color: hsl(0 0% 98%);
+  }
+
+  .icon-dark-bg {
+    background: linear-gradient(145deg, hsl(210 15% 36%), hsl(210 15% 30%));
+    border: 1px solid hsl(210 15% 45%);
+    color: hsl(0 0% 98%);
+  }
+  .light .icon-dark-bg {
+    background: linear-gradient(145deg, hsl(210 20% 92%), hsl(210 18% 88%));
+    border: 1px solid hsl(210 18% 78%);
+    box-shadow: 0 2px 8px -2px rgba(0, 0, 0, 0.08);
+  }
+  .icon-dark-bg svg { filter: none; color: hsl(0 0% 98%); }
+  .light .icon-dark-bg svg { color: hsl(210 25% 18%); }
+  .icon-dark-bg:hover { filter: brightness(1.02); }
+  .light .icon-dark-bg:hover { 
+    background: linear-gradient(145deg, hsl(210 22% 94%), hsl(210 20% 90%));
+    border-color: hsl(210 20% 72%);
+    filter: none;
+  }
+
+  .portfolio-glow {
+    box-shadow: var(--shadow-glow);
+  }
+
+  .portfolio-card {
+    background: hsl(var(--card));
+    box-shadow: var(--shadow-brutal);
+    border: 2px solid hsl(var(--border));
+    transition: var(--transition-smooth);
+  }
+
+  .portfolio-card:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 8px 8px 0px hsl(var(--border));
+  }
+
+  .neobrutalist-button {
+    @apply font-bold uppercase tracking-wider;
+    background: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
+    border: 3px solid hsl(214 22% 28%);
+    box-shadow: 4px 4px 0px hsl(214 22% 28%);
+    transition: all 0.2s ease-in-out;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .neobrutalist-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+  }
+
+  .neobrutalist-button:hover::before {
+    left: 100%;
+  }
+
+  .neobrutalist-button:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0px hsl(214 22% 28%);
+  }
+
+  .neobrutalist-button:active {
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0px hsl(214 22% 28%);
+  }
+
+  .neobrutalist-button-primary {
+    background: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
+    border: 3px solid hsl(214 22% 28%);
+  }
+
+  .neobrutalist-button-secondary {
+    background: hsl(var(--secondary));
+    color: hsl(var(--secondary-foreground));
+    border: 3px solid hsl(214 22% 28%);
+  }
+
+  .light .neobrutalist-button {
+    border: 3px solid hsl(210 25% 20%);
+    box-shadow: 4px 4px 0px hsl(210 25% 20%);
+  }
+
+  .light .neobrutalist-button:hover {
+    box-shadow: 6px 6px 0px hsl(210 25% 20%);
+  }
+
+  .light .neobrutalist-button:active {
+    box-shadow: 2px 2px 0px hsl(210 25% 20%);
+  }
+
+  .light .neobrutalist-button-primary {
+    background: hsl(174 45% 45%);
+    color: hsl(0 0% 100%);
+    border: 3px solid hsl(174 55% 25%);
+  }
+
+  .light .neobrutalist-button-secondary {
+    background: hsl(0 85% 65%);
+    color: hsl(0 0% 100%);
+    border: 3px solid hsl(0 85% 45%);
+  }
+
+  .neobrutalist-button-outline {
+    background: transparent;
+    color: hsl(var(--primary));
+    border: 3px solid hsl(var(--primary));
+  }
+
+  .neobrutalist-button-outline:hover {
+    background: hsl(var(--primary) / 0.1);
+  }
+
+  .neobrutalist-button-ghost {
+    background: hsl(var(--background));
+    color: hsl(var(--foreground));
+    border: 3px solid hsl(var(--border));
+  }
+
+  .neobrutalist-button-ghost:hover {
+    background: hsl(var(--primary) / 0.1);
+    border-color: hsl(var(--primary));
+  }
+
+  .resume-button-minimal {
+    @apply px-5 py-2.5;
+    border: 2px solid hsl(var(--primary));
+    background: hsl(var(--primary));
+    position: relative;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    clip-path: polygon(
+      0 0,
+      calc(100% - 10px) 0,
+      100% 10px,
+      100% 100%,
+      10px 100%,
+      0 calc(100% - 10px)
+    );
+  }
+
+  .resume-button-minimal::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, transparent, hsl(var(--primary-foreground) / 0.1));
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    z-index: 0;
+    opacity: 0;
+  }
+
+  .resume-button-minimal:hover {
+    background: hsl(var(--primary) / 0.9);
+    border-color: hsl(var(--primary) / 0.9);
+    transform: translateX(4px);
+  }
+
+  .resume-button-minimal:hover::before {
+    opacity: 1;
+  }
+
+  .resume-button-minimal:active {
+    transform: translateX(2px);
+    transition-duration: 0.1s;
+  }
+
+  .resume-button-minimal:focus-visible {
+    outline: 2px solid hsl(var(--primary));
+    outline-offset: 4px;
+  }
+
+  .light .resume-button-minimal {
+    background: hsl(174 45% 45%);
+    border-color: hsl(174 45% 45%);
+  }
+
+  .light .resume-button-minimal:hover {
+    background: hsl(174 45% 40%);
+    border-color: hsl(174 45% 40%);
+  }
+
+  @media (max-width: 640px) {
+    .resume-button-minimal {
+      @apply px-4 py-2;
+      clip-path: polygon(
+        0 0,
+        calc(100% - 8px) 0,
+        100% 8px,
+        100% 100%,
+        8px 100%,
+        0 calc(100% - 8px)
+      );
+    }
+  }
+
+  .section-number {
+    @apply text-lg font-mono text-primary mb-4 tracking-wider;
+  }
+
+  .section-title {
+    @apply text-4xl md:text-5xl font-black mb-8 text-foreground;
+  }
+
+
+  .neobrutalist-mobile {
+    @apply px-4 py-3 text-sm md:px-6 md:py-4 md:text-base;
+  }
+
+  .neobrutalist-card {
+    @apply portfolio-card p-6 md:p-8;
+  }
+
+  .neobrutalist-hover {
+    transition: all 0.2s ease-in-out;
+  }
+
+  .neobrutalist-hover:hover {
+    transform: translate(-4px, -4px);
+    box-shadow: 12px 12px 0px hsl(var(--border));
+  }
+
+
+  @media (max-width: 640px) {
+    .section-title {
+      @apply text-4xl;
+    }
+
+    .neobrutalist-button {
+      @apply px-4 py-3 text-sm;
+    }
+  }
+  
+  .typewriter {
+    overflow: hidden;
+    border-right: 2px solid hsl(var(--primary));
+    white-space: nowrap;
+    animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+  }
+
+
+  .text-hero {
+    font-size: clamp(2.025rem, 5.4vw, 4.05rem);
+  }
+  .text-hero-sub {
+    font-size: clamp(0.9rem, 1.98vw, 1.6875rem);
+    line-height: 1.25;
+  }
+
+  .text-display-lg {
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    line-height: 1.1;
+  }
+  
+  .fade-in-up {
+    animation: fadeInUp 0.5s ease-out forwards;
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  
+  .slide-in-left {
+    animation: slideInLeft 0.5s ease-out forwards;
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  
+  .social-icon {
+    @apply w-6 h-6 text-muted-foreground hover:text-primary transition-colors cursor-pointer;
+  }
+  
+  .nav-indicator {
+    @apply h-8 w-0.5 bg-border transition-all duration-300;
+  }
+  
+  .nav-indicator.active {
+    @apply bg-primary;
+  }
+
+
+  .skill-card {
+    @apply bg-card border-2 border-border hover:border-primary transition-all duration-300;
+    box-shadow: var(--shadow-brutal);
+  }
+
+  .skill-card:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0px hsl(var(--border));
+  }
+
+  .light .skill-card {
+    background: hsl(0 0% 98%);
+    border: 2px solid hsl(210 15% 88%);
+  }
+
+  .light .portfolio-card {
+    background: hsl(0 0% 98%);
+    border: 2px solid hsl(210 15% 88%);
+    box-shadow: 3px 3px 0px hsl(210 15% 83%);
+  }
+
+  .light .portfolio-card:hover {
+    box-shadow: 6px 6px 0px hsl(210 15% 83%);
+  }
+
+  .light .neobrutalist-card {
+    background: hsl(0 0% 98%);
+    border: 2px solid hsl(210 15% 88%);
+    box-shadow: 3px 3px 0px hsl(210 15% 83%);
+  }
+
+  .light .neobrutalist-card:hover {
+    box-shadow: 6px 6px 0px hsl(210 15% 83%);
+  }
+
+  .light .skills-shell {
+    background: linear-gradient(145deg, hsl(0 0% 100%), hsl(50 58% 98%));
+    border: 2px solid hsl(210 15% 88%);
+    box-shadow: 3px 3px 0px hsl(210 15% 83%);
+  }
+
+  .skill-icon {
+    @apply transition-all duration-300;
+  }
+
+  .light .skill-icon svg {
+    filter: drop-shadow(0 0 1px rgba(0,0,0,0.25));
+  }
+
+  .light .skill-card .icon-wrap,
+  .light .portfolio-card .icon-wrap {
+    background: hsl(210 15% 95%);
+    border: 1px solid hsl(210 15% 85%);
+    border-radius: 10px;
+  }
+
+  .light .icon-github svg,
+  .light .icon-nextjs svg,
+  .light .icon-bun svg,
+  .light .icon-vercel svg,
+  .light .icon-threejs svg,
+  .light .icon-express svg {
+    filter: drop-shadow(0 0 2px rgba(0,0,0,0.35));
+  }
+
+
+  .skills-shell {
+    position: relative;
+    background: linear-gradient(145deg, hsl(var(--card)), hsl(214 26% 14%));
+    border: 2px solid hsl(var(--border));
+    box-shadow: var(--shadow-brutal);
+  }
+
+  .skills-shell::before {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    background:
+      radial-gradient(60% 40% at 8% 10%, hsl(var(--primary) / 0.20), transparent 60%),
+      radial-gradient(60% 40% at 92% 90%, hsl(var(--secondary) / 0.18), transparent 60%);
+    filter: blur(28px);
+    opacity: .35;
+    pointer-events: none;
+  }
+
+  .dot-grid {
+    background-image: radial-gradient(hsl(var(--primary) / 0.10) 1px, transparent 1px);
+    background-size: 22px 22px;
+    background-position: -10px -10px;
+  }
+}
+
+@layer utilities {
+
+  @keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
+  }
+  
+  @keyframes blink-caret {
+    from, to { border-color: transparent; }
+    50% { border-color: hsl(var(--primary)); }
+  }
+  
+  @keyframes fadeInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes slideInLeft {
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-5px); }
+  }
+
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   OPTIMISATIONS layered on top of the existing design.
+   Nothing below changes how anything looks — it is the loader being fed real
+   readiness signals, plus keyboard-focus and reduced-motion support.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ─── Scroll lock while the intro screen is visible ─────────────────────────── */
+
+html.is-booting {
+  overflow: hidden;
+}
+
+/* ─── Intro / loading screen ──────────────────────────────────────────────────
+   The loader used to render through styled-components — a whole CSS-in-JS
+   runtime for one screen. The keyframes below are a direct port, so the visual
+   is identical. Scoped under .loader-screen with `ls-` prefixed keyframes so
+   nothing else in this stylesheet can collide with them.                       */
+
+.loader-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background-color: hsl(var(--background));
+  opacity: 1;
+  transition: opacity 0.45s ease;
+}
+
+.loader-screen[data-leaving="true"] {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.loader-screen .content-box {
+  position: relative;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.loader-screen .loader-wrapper {
+  position: relative;
+  width: 200px;
+  height: 100px;
+  transform: translateX(-65px);
+}
+
+.loader-screen .loader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  z-index: 20;
+  animation: ls-speeder 0.4s linear infinite;
+}
+
+.loader-screen .loader > span {
+  position: absolute;
+  top: -19px;
+  left: 60px;
+  height: 5px;
+  width: 35px;
+  border-radius: 2px 10px 1px 0;
+  background: hsl(var(--primary));
+}
+
+.loader-screen .base span {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-top: 6px solid transparent;
+  border-right: 100px solid hsl(var(--primary) / 0.3);
+  border-bottom: 6px solid transparent;
+}
+
+.loader-screen .base span::before {
+  content: "";
+  position: absolute;
+  top: -16px;
+  right: -110px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: hsl(var(--primary) / 0.3);
+}
+
+.loader-screen .base span::after {
+  content: "";
+  position: absolute;
+  top: -16px;
+  right: -98px;
+  width: 0;
+  height: 0;
+  border-top: 0 solid transparent;
+  border-right: 55px solid hsl(var(--primary) / 0.3);
+  border-bottom: 16px solid transparent;
+}
+
+.loader-screen .face {
+  position: absolute;
+  top: -15px;
+  right: -125px;
+  width: 20px;
+  height: 12px;
+  border-radius: 20px 20px 0 0;
+  background: hsl(var(--primary) / 0.3);
+  transform: rotate(-40deg);
+}
+
+.loader-screen .face::after {
+  content: "";
+  position: absolute;
+  top: 7px;
+  right: 4px;
+  width: 12px;
+  height: 12px;
+  border-radius: 0 0 2px 2px;
+  background: hsl(var(--primary));
+  transform: rotate(40deg);
+  transform-origin: 50% 50%;
+}
+
+.loader-screen .loader > span > span {
+  position: absolute;
+  width: 30px;
+  height: 1px;
+  background: hsl(var(--foreground));
+}
+
+.loader-screen .loader > span > span:nth-child(1) { animation: ls-fazer1 0.2s linear infinite; }
+.loader-screen .loader > span > span:nth-child(2) { top: 3px; animation: ls-fazer2 0.4s linear infinite; }
+.loader-screen .loader > span > span:nth-child(3) { top: 1px; animation: ls-fazer3 0.4s linear infinite; animation-delay: -1s; }
+.loader-screen .loader > span > span:nth-child(4) { top: 4px; animation: ls-fazer4 1s linear infinite; animation-delay: -1s; }
+
+.loader-screen .longfazers {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  overflow: hidden;
+}
+
+.loader-screen .longfazers span {
+  position: absolute;
+  width: 20%;
+  height: 2px;
+  background: hsl(var(--primary));
+}
+
+.loader-screen .longfazers span:nth-child(1) { top: 20%; animation: ls-lf1 0.6s linear infinite; animation-delay: -5s; }
+.loader-screen .longfazers span:nth-child(2) { top: 40%; animation: ls-lf2 0.8s linear infinite; animation-delay: -1s; }
+.loader-screen .longfazers span:nth-child(3) { top: 60%; animation: ls-lf3 0.6s linear infinite; }
+.loader-screen .longfazers span:nth-child(4) { top: 80%; animation: ls-lf4 0.5s linear infinite; animation-delay: -3s; }
+
+.loader-screen .clouds {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.loader-screen .cloud {
+  position: absolute;
+  border-radius: 50%;
+  background: hsl(var(--foreground));
+  opacity: 0.1;
+  animation: ls-move-clouds linear infinite;
+}
+
+.loader-screen .cloud::before,
+.loader-screen .cloud::after {
+  content: "";
+  position: absolute;
+  background: inherit;
+  border-radius: 50%;
+}
+
+.loader-screen .cloud::before { top: -30%; left: 10%; width: 60%; height: 60%; }
+.loader-screen .cloud::after { top: -20%; left: 50%; width: 40%; height: 40%; }
+
+.loader-screen .cloud1 { top: 15%; left: 100%; width: 100px; height: 60px; animation-duration: 2s; }
+.loader-screen .cloud2 { top: 35%; left: 100%; width: 150px; height: 80px; animation-duration: 3s; }
+.loader-screen .cloud3 { top: 20%; left: 100%; width: 80px; height: 50px; animation-duration: 4s; }
+.loader-screen .cloud4 { top: 70%; left: 100%; width: 100px; height: 80px; animation-duration: 3s; }
+.loader-screen .cloud5 { top: 80%; left: 100%; width: 170px; height: 50px; animation-duration: 2s; }
+
+.loader-screen .progress-text {
+  margin-top: 40px;
+  margin-left: 18px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 2rem;
+  font-weight: 900;
+  font-variant-numeric: tabular-nums;
+  color: hsl(var(--primary));
+  opacity: 0.85;
+}
+
+@media (max-width: 768px) {
+  .loader-screen .content-box {
+    transform: scale(0.8);
+  }
+}
+
+@keyframes ls-fazer1 { 0% { left: 0; } 100% { left: -80px; opacity: 0; } }
+@keyframes ls-fazer2 { 0% { left: 0; } 100% { left: -100px; opacity: 0; } }
+@keyframes ls-fazer3 { 0% { left: 0; } 100% { left: -50px; opacity: 0; } }
+@keyframes ls-fazer4 { 0% { left: 0; } 100% { left: -150px; opacity: 0; } }
+
+@keyframes ls-speeder {
+  0% { transform: translate(2px, 1px) rotate(0deg); }
+  10% { transform: translate(-1px, -3px) rotate(-1deg); }
+  20% { transform: translate(-2px, 0px) rotate(1deg); }
+  30% { transform: translate(1px, 2px) rotate(0deg); }
+  40% { transform: translate(1px, -1px) rotate(1deg); }
+  50% { transform: translate(-1px, 3px) rotate(-1deg); }
+  60% { transform: translate(-1px, 1px) rotate(0deg); }
+  70% { transform: translate(3px, 1px) rotate(-1deg); }
+  80% { transform: translate(-2px, -1px) rotate(1deg); }
+  90% { transform: translate(2px, 1px) rotate(0deg); }
+  100% { transform: translate(1px, -2px) rotate(-1deg); }
+}
+
+@keyframes ls-lf1 { 0% { left: 200%; } 100% { left: -200%; opacity: 0; } }
+@keyframes ls-lf2 { 0% { left: 200%; } 100% { left: -200%; opacity: 0; } }
+@keyframes ls-lf3 { 0% { left: 200%; } 100% { left: -100%; opacity: 0; } }
+@keyframes ls-lf4 { 0% { left: 200%; } 100% { left: -100%; opacity: 0; } }
+
+@keyframes ls-move-clouds {
+  0% { transform: translateX(20vw); }
+  100% { transform: translateX(-120vw); }
+}
+
+/* ─── Keyboard focus ──────────────────────────────────────────────────────────
+   One visible outline for every interactive element. Keyboard users get a
+   consistent ring; mouse users never see it.                                   */
+
+:where(a, button, input, textarea, select, summary, [tabindex]):focus-visible {
+  outline: 2px solid hsl(var(--ring, var(--primary)));
+  outline-offset: 2px;
+}
+
+/* ─── Anchor offset ───────────────────────────────────────────────────────────
+   Native smooth scrolling, plus room for the fixed header when jumping to a
+   section. Replaces the previous `scrollIntoView` calls that fought Lenis.
+
+   6.5rem, not 5.5rem: the nav mark is `h-14` inside `py-4`, so the header is
+   88px tall and the old value left a jumped-to section flush against it.      */
+
+html {
+  scroll-behavior: smooth;
+}
+
+section[id],
+[id]:target {
+  scroll-margin-top: 6.5rem;
+}
+
+/* ─── Reduced motion ──────────────────────────────────────────────────────────
+   Covers the intro screen, reveals, pulses, float, and smooth scrolling.       */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   DISPLAY SERIF
+   ═══════════════════════════════════════════════════════════════════════════
+   Headings and display type move to Fraunces; body copy stays in Inter. This
+   block sits after every @layer on purpose so it wins over the component
+   classes without needing !important.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.section-title,
+.text-hero,
+.text-display-lg,
+.text-hero-sub {
+  font-family: "Fraunces Variable", Fraunces, Georgia, Cambria, "Times New Roman", serif;
+  letter-spacing: -0.015em;
+}
+
+/* Fraunces is a variable font with `SOFT` and `WONK` axes; the WONK cut gives
+   the large display sizes a little more character. */
+h1,
+.text-hero,
+.text-display-lg {
+  font-variation-settings: "SOFT" 0, "WONK" 1;
+  font-optical-sizing: auto;
+}

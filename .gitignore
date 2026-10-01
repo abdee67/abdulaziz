@@ -1,0 +1,49 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Ignore Bun lockfile to avoid unintended Bun installs
+bun.lockb
+bun.lock
+.env
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Playwright MCP
+.playwright-mcp/
+
+# AI agent worktrees / scratch
+.kilo/
+
+# Vite timestamp artifacts
+vite.config.ts.timestamp-*
+
+# Env files (keep the example)
+.env
+.env.local
+.env.*.local
+!.env.example
+
+
+
+
+
