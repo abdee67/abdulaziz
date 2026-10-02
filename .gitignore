@@ -43,6 +43,10 @@ vite.config.ts.timestamp-*
 .env.*.local
 !.env.example
 
+#my files
+abdulaziz_portfolio.md
+abdulaziz_software_engineer_system.md
+
 
 
 
