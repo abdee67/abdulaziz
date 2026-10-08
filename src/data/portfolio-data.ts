@@ -73,7 +73,7 @@ export const PORTFOLIO_DATA: PortfolioData = {
   location: "Addis Abeba, Ethiopia",
   timezone: "Africa/Addis_Ababa",
   timezoneLabel: "EAT",
-  personalWebsiteUrl: "https://abdulaziz.dev.vercel.dev",
+  personalWebsiteUrl: "https://abdulaziizdev.vercel.dev",
   avatarUrl: "https://avatars.githubusercontent.com/u/142771187?v=4",
 
   about: "Full Stack & Flutter Developer building products from the ground up.",
@@ -125,7 +125,7 @@ export const PORTFOLIO_DATA: PortfolioData = {
     {
       company: "TechEquations",
       companyUrl: "https://techequations.com/",
-      title: "Intermediate Software Developer",
+      title: "Software Developer",
       start: "2024",
       end: null,
       badges: ["Onsite", "Mobile", "Cross-Platform", "Flutter", "Dart", "Android"],
@@ -209,7 +209,7 @@ export const PORTFOLIO_DATA: PortfolioData = {
       title: "Unity Finance Group",
       description:
         "A mobile-first financial services app built with Flutter, giving cooperative members and external users transparent, accessible finance tools. Members manage savings, request loans, track obligations and apply for membership from a single Android client.",
-      techStack: ["Flutter", "Supabase", "PostgreSQL", "REST API"],
+      techStack: ["Flutter", "Supabase", "PostgreSQL", "REST API", "Firebase FCM", "Bloc"],
       githubUrl: "https://github.com/abdee67/ufg",
     },
     {
@@ -281,12 +281,6 @@ export const PORTFOLIO_DATA: PortfolioData = {
         "A boutique salon site built for booking and showcase: services, gallery work, testimonials and clear contact paths via WhatsApp and embedded maps, with an animated hero and LocalBusiness schema for SEO.",
       techStack: ["Next.js", "React", "TypeScript"],
       liveUrl: "https://liha-s-beauty.vercel.app/",
-    },
-    {
-      title: "Cord Consultancy",
-      description: "A landing page for CORD Nutrition and Health Consultancy.",
-      techStack: ["Next.js", "SQLite", "REST API"],
-      liveUrl: "https://www.cordconsultancy.com/",
     },
   ],
 };
