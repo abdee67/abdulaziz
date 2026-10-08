@@ -48,3 +48,19 @@ export function scrollToTop() {
 export function refreshScroll() {
   activeLenis?.resize();
 }
+
+/**
+ * Lock page scroll while an overlay (the image viewer) owns the screen.
+ *
+ * Lenis keeps driving scroll from wheel input even under `overflow: hidden`, so
+ * both levers are pulled: stop the engine, and clamp the document with a class.
+ */
+export function stopScroll() {
+  activeLenis?.stop();
+  document.documentElement.classList.add("is-viewing-media");
+}
+
+export function startScroll() {
+  activeLenis?.start();
+  document.documentElement.classList.remove("is-viewing-media");
+}

@@ -668,6 +668,27 @@ html.is-booting {
   overflow: hidden;
 }
 
+/* ─── Scroll lock while the full-screen image viewer is open ─────────────────── */
+/* Mirrors the is-booting class above; toggled by stopScroll()/startScroll() in
+   lib/scroll.ts, which also stop/start Lenis — Lenis ignores overflow: hidden. */
+
+html.is-viewing-media {
+  overflow: hidden;
+}
+
+/* ─── Filmstrip scrollbar hiding ──────────────────────────────────────────────
+   The image viewer navigates by swipe, arrows, wheel and keyboard, so a scrollbar
+   strip across a full-screen photo is pure noise. `scrollbar-width` covers
+   Firefox, the WebKit rule everything else. */
+
+.scrollbar-none {
+  scrollbar-width: none;
+}
+
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+
 /* ─── Intro / loading screen ──────────────────────────────────────────────────
    The loader used to render through styled-components — a whole CSS-in-JS
    runtime for one screen. The keyframes below are a direct port, so the visual
