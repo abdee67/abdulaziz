@@ -1,3 +1,5 @@
+import { assetUrl } from "@/lib/asset";
+
 interface MonogramProps {
   className?: string;
   /** Set to "" when the mark sits next to the name and would be redundant. */
@@ -20,7 +22,7 @@ interface MonogramProps {
  */
 const Monogram = ({ className, label = "Abdulaziz Muhammed" }: MonogramProps) => (
   <img
-    src={`${import.meta.env.BASE_URL}logo.png`}
+    src={assetUrl("logo.png")}
     alt={label}
     aria-hidden={label ? undefined : true}
     draggable={false}
