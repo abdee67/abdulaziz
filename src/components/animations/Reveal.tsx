@@ -1,6 +1,26 @@
 import { PropsWithChildren } from "react";
 import { motion, useReducedMotion, Variants } from "framer-motion";
 
+/**
+ * Scroll-reveal viewport config.
+ *
+ * `amount: 0.2` — "at least 20% of this element must be on screen" — is a trap
+ * for any element taller than the viewport, and it fails silently. The projects
+ * grid is the proof: three columns on desktop make it ~1,600px tall, so 20% is
+ * 320px and it reveals fine; one column on a phone makes the same grid ~4,200px
+ * tall, so 20% is ~840px *simultaneously*, which no phone viewport can show
+ * (and `margin` shrinks the observation box further). The threshold is never
+ * met, `whileInView` never fires, and every child stays at its `hidden` variant
+ * — opacity 0. Visible in devtools, invisible to the eye.
+ *
+ * `"some"` (any intersection at all) is height-independent, so it works for a
+ * heading and for a 13-card grid alike. The -10% margin still keeps the trigger
+ * slightly inside the fold so things animate at a natural point rather than the
+ * instant a pixel appears.
+ */
+const viewport = (once: boolean) =>
+  ({ once, amount: "some", margin: "-10% 0px" }) as const;
+
 export type RevealProps = PropsWithChildren<{
   className?: string;
   delay?: number;
@@ -46,7 +66,7 @@ export function Reveal({
       className={className}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once, amount: 0.2, margin: "-10% 0px" }}
+      viewport={viewport(once)}
       variants={variants}
     >
       {children}
@@ -68,7 +88,7 @@ export function FadeInStagger({ children, className, stagger = 0.08 }: FadeInSta
       className={className}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, amount: 0.2, margin: "-10% 0px" }}
+      viewport={viewport(true)}
       variants={{
         hidden: {},
         visible: prefersReduced
