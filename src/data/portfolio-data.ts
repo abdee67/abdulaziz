@@ -325,6 +325,33 @@ export const PORTFOLIO_DATA: PortfolioData = {
         "Customer-facing Flutter app for the UR Beauty platform. Customers discover beauty services, find nearby stylists, book appointments, manage bookings, pay by card, review services and manage their profile.",
       techStack: ["Flutter", "Supabase", "Stripe", "Chapa"],
       githubUrl: "https://github.com/abdee67/URS-beauty",
+      images: [
+        {
+          src: "/images/projects/ursbeauty1.png",
+          alt: "URS Beauty app,Home screen, mobile screenshot 1 of 5",
+          kind: "phone",
+        },
+        {
+          src: "/images/projects/ursbeauty2.png",
+          alt: "URS Beauty app Home screen top stylist mobile screenshot 2 of 5",
+          kind: "phone",
+        },
+        {
+          src: "/images/projects/ursbeauty10.png",
+          alt: "URS Beauty app Booked services list mobile screenshot 3 of 5",
+          kind: "phone",
+        },
+        {
+          src: "/images/projects/ursbeauty11.png",
+          alt: "URS Beauty app Completed services list mobile screenshot 4 of 5",
+          kind: "phone",
+        },
+        {
+          src: "/images/projects/ursbeauty12.png",
+          alt: "URS Beauty app Card payment mobile screenshot 5 of 5",
+          kind: "phone",
+        },
+      ],
     },
     {
       title: "UR Stylist",
